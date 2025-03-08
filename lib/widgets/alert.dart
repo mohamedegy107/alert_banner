@@ -217,7 +217,7 @@ class __OverlayItemState extends State<_OverlayItem>
         child: Transform.scale(
           scale: scaleAnim.value,
           child: SizedBox(
-            width: widget.maxWidth ?? MediaQuery.of(context).size.width * 0.5,
+            width: widget.maxWidth ?? MediaQuery.of(context).size.width,
             child: GestureDetector(
               onTap: () => widget.onTap(),
               // behavior: HitTestBehavior.opaque,

@@ -43,14 +43,14 @@ class HomeScreen extends StatelessWidget {
                   durationOfScalingDown: const Duration(seconds: 0),
                   durationOfLeavingScreenBySwipe: const Duration(seconds: 0),
                   alertBannerLocation: AlertBannerLocation.center,
-                  child: const ExampleAlertBannerChild(),
-                  maxWidth: 300,
-                  // child: const AnimatedBanner(
-                  //   imageHeight: 30,
-                  //   imageWidth: 50,
-                  //   imageUrl:
-                  //       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
-                  // ),
+                  // child: const ExampleAlertBannerChild(),
+                  // maxWidth: 50,
+                  child: const AnimatedBanner(
+                    imageHeight: 30,
+                    imageWidth: 50,
+                    imageUrl:
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
+                  ),
                   onTap: () => print("TAPPED"),
                   // .. EDIT MORE FIELDS HERE ...
                 ),
@@ -171,17 +171,14 @@ class _MovingBannerState extends State<AnimatedBanner>
   Widget build(BuildContext context) {
     return SlideTransition(
       position: _slideAnimation,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 40),
-        child: SizedBox(
-          height: widget.imageHeight + 10,
-          width: widget.imageWidth + 10,
-          child: UnconstrainedBox(
-            child: Image.network(
-              widget.imageUrl,
-              width: widget.imageWidth,
-              height: widget.imageHeight,
-            ),
+      child: SizedBox(
+        height: widget.imageHeight + 10,
+        width: widget.imageWidth + 10,
+        child: UnconstrainedBox(
+          child: Image.network(
+            widget.imageUrl,
+            width: widget.imageWidth,
+            height: widget.imageHeight,
           ),
         ),
       ),
