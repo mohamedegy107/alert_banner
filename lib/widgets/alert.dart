@@ -13,12 +13,13 @@ dynamic showAlertBanner(
   Curve? curveScaleUpAnim,
   Curve? curveScaleDownAnim,
   Curve? curveTranslateAnim,
+  EdgeInsets padding = const EdgeInsets.only(top: 10),
 }) {
   OverlayEntry? overlay;
   overlay = OverlayEntry(
     builder: (context) {
       return Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: padding,
         child: _OverlayItem(
           onTap: onTap,
           curveScaleDownAnim: curveScaleDownAnim ?? Curves.decelerate,
