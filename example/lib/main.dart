@@ -28,60 +28,61 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // EXAMPLE #1 of showAlertBanner()
-              // You can alter its MANY fields, too
-              TextButton(
-                onPressed: () => showAlertBanner(
-                  context,
-                  durationOfStayingOnScreen: const Duration(seconds: 6),
-                  durationOfScalingUp: const Duration(seconds: 0),
-                  durationOfScalingDown: const Duration(seconds: 0),
-                  durationOfLeavingScreenBySwipe: const Duration(seconds: 0),
-                  alertBannerLocation: AlertBannerLocation.center,
-                  // child: const ExampleAlertBannerChild(),
-                  // maxWidth: 50,
-                  child: const AnimatedBanner(
-                    imageHeight: 30,
-                    imageWidth: 50,
-                    imageUrl:
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
-                  ),
-                  onTap: () => print("TAPPED"),
-                  // .. EDIT MORE FIELDS HERE ...
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // EXAMPLE #1 of showAlertBanner()
+            // You can alter its MANY fields, too
+            TextButton(
+              onPressed: () => showAlertBanner(
+                context,
+                durationOfStayingOnScreen: const Duration(seconds: 6),
+                durationOfScalingUp: const Duration(seconds: 0),
+                durationOfScalingDown: const Duration(seconds: 0),
+                durationOfLeavingScreenBySwipe: const Duration(seconds: 0),
+                alertBannerLocation: AlertBannerLocation.center,
+                // child: const ExampleAlertBannerChild(),
+                // maxWidth: 50,
+                child: const AnimatedBanner(
+                  imageHeight: 30,
+                  imageWidth: 50,
+                  imageUrl:
+                      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
                 ),
-                child: const Text("Show top alert"),
-              ),
-
-              ////
-              const Padding(
-                padding: EdgeInsets.all(15),
-                child: Text(
-                  "🔥 Use with your own custom child widget.\n\n🔥 Adjust every field, such as child, durations, anim curves, safe areas, etc.\n\n🔥 Easy to call.\n\n🔥 Dismissible.\n\n🔥 Callback for onTap.",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 18),
-                ),
-              ),
-              // EXAMPLE #2 of showAlertBanner()
-              // You can alter its MANY fields, too
-              TextButton(
-                onPressed: () => print("TAPPED OUT OF ALERT"),
-                // showAlertBanner(
-                //   context,
-                //   () => print("TAPPED"),
-                //   const ExampleAlertBannerChild(),
-                //   alertBannerLocation: AlertBannerLocation.bottom,
-                // ),
-                child: const Text("Show bottom alert"),
+                onTap: () => print("TAPPED"),
                 // .. EDIT MORE FIELDS HERE ...
               ),
-            ],
-          ),
-        ));
+              child: const Text("Show top alert"),
+            ),
+
+            ////
+            const Padding(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                "🔥 Use with your own custom child widget.\n\n🔥 Adjust every field, such as child, durations, anim curves, safe areas, etc.\n\n🔥 Easy to call.\n\n🔥 Dismissible.\n\n🔥 Callback for onTap.",
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            // EXAMPLE #2 of showAlertBanner()
+            // You can alter its MANY fields, too
+            TextButton(
+              onPressed: () => print("TAPPED OUT OF ALERT"),
+              // showAlertBanner(
+              //   context,
+              //   () => print("TAPPED"),
+              //   const ExampleAlertBannerChild(),
+              //   alertBannerLocation: AlertBannerLocation.bottom,
+              // ),
+              child: const Text("Show bottom alert"),
+              // .. EDIT MORE FIELDS HERE ...
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
