@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 dynamic showAlertBanner(
   BuildContext context, {
   required VoidCallback onTap,
+  VoidCallback? onCompleted,
   required Widget child,
   AlertBannerLocation alertBannerLocation = AlertBannerLocation.top,
   double? maxWidth,
@@ -29,6 +30,7 @@ dynamic showAlertBanner(
                   : Alignment.bottomCenter,
           child: _OverlayItem(
             onTap: onTap,
+            onCompleted: onCompleted,
             curveScaleDownAnim: curveScaleDownAnim ?? Curves.decelerate,
             curveScaleUpAnim: curveScaleUpAnim ?? Curves.easeOutBack,
             curveTranslateAnim: curveTranslateAnim ?? Curves.ease,
@@ -56,6 +58,7 @@ class _OverlayItem extends StatefulWidget {
   const _OverlayItem({
     Key? key,
     required this.onTap,
+    this.onCompleted,
     required this.child,
     required this.overlay,
     required this.duration,
@@ -71,6 +74,9 @@ class _OverlayItem extends StatefulWidget {
 
   /// When the alert_banner gets tapped.
   final VoidCallback onTap;
+
+  /// When the alert_banner is done with its animation.
+  final VoidCallback? onCompleted;
 
   /// Where the alert_banner is displayed (top or bottom of screen).
   final AlertBannerLocation alertBannerLocation;
@@ -157,7 +163,13 @@ class __OverlayItemState extends State<_OverlayItem>
   /// AKA: Hides the alert_banner via animation.
   void reverseAnimEarly() {
     if (!mounted || widget.overlay == null) return;
-    translateAnimController.forward().then((value) => widget.overlay!.remove());
+    translateAnimController.forward().then((value) {
+      ////
+      widget.onCompleted?.call();
+
+      ////
+      widget.overlay!.remove();
+    });
     translateAnimController.addListener(() => setState(() {}));
   }
 
