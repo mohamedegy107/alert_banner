@@ -38,23 +38,19 @@ class HomeScreen extends StatelessWidget {
               TextButton(
                 onPressed: () => showAlertBanner(
                   context,
-                  () => print("TAPPED"),
-
-                  // const ExampleAlertBannerChild(),
-
-                  const AnimatedBanner(
-                    imageHeight: 30,
-                    imageWidth: 50,
-                    imageUrl:
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
-                  ),
-
-                  maxWidth: 50,
                   durationOfStayingOnScreen: const Duration(seconds: 6),
                   durationOfScalingUp: const Duration(seconds: 0),
                   durationOfScalingDown: const Duration(seconds: 0),
                   durationOfLeavingScreenBySwipe: const Duration(seconds: 0),
                   alertBannerLocation: AlertBannerLocation.center,
+                  // const ExampleAlertBannerChild(),
+                  child: const AnimatedBanner(
+                    imageHeight: 30,
+                    imageWidth: 50,
+                    imageUrl:
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
+                  ),
+                  onTap: () => print("TAPPED"),
                   // .. EDIT MORE FIELDS HERE ...
                 ),
                 child: const Text("Show top alert"),

@@ -2,11 +2,11 @@ import 'package:alert_banner/exports.dart';
 import 'package:flutter/material.dart';
 
 dynamic showAlertBanner(
-  BuildContext context,
-  VoidCallback onTap,
-  Widget child, {
+  BuildContext context, {
+  required VoidCallback onTap,
+  required Widget child,
   AlertBannerLocation alertBannerLocation = AlertBannerLocation.top,
-  double? maxWidth,
+  // double? maxWidth,
   Duration? durationOfStayingOnScreen,
   Duration? durationOfScalingUp,
   Duration? durationOfScalingDown,
@@ -39,7 +39,7 @@ dynamic showAlertBanner(
             durationOfLeavingScreenBySwipe: durationOfLeavingScreenBySwipe ??
                 const Duration(milliseconds: 1500),
             alertBannerLocation: alertBannerLocation,
-            maxWidth: maxWidth,
+            // maxWidth: maxWidth,
             overlay: overlay,
             duration:
                 durationOfStayingOnScreen ?? const Duration(milliseconds: 3500),
@@ -66,7 +66,7 @@ class _OverlayItem extends StatefulWidget {
     required this.curveScaleDownAnim,
     required this.curveScaleUpAnim,
     required this.curveTranslateAnim,
-    this.maxWidth,
+    // this.maxWidth,
   }) : super(key: key);
 
   /// When the alert_banner gets tapped.
@@ -79,7 +79,7 @@ class _OverlayItem extends StatefulWidget {
   final Widget child;
 
   /// Max width of alert_banner.
-  final double? maxWidth;
+  // final double? maxWidth;
 
   /// The passed overlay instance.
   final OverlayEntry? overlay;
