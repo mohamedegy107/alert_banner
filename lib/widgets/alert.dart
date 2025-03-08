@@ -1,11 +1,10 @@
-import 'package:alert_banner/exports.dart';
 import 'package:flutter/material.dart';
 
 dynamic showAlertBanner(
   BuildContext context,
   VoidCallback onTap,
   Widget child, {
-  AlertBannerLocation alertBannerLocation = AlertBannerLocation.top,
+  // AlertBannerLocation alertBannerLocation = AlertBannerLocation.top,
   double? maxLength,
   Duration? durationOfStayingOnScreen,
   Duration? durationOfScalingUp,
@@ -14,46 +13,34 @@ dynamic showAlertBanner(
   Curve? curveScaleUpAnim,
   Curve? curveScaleDownAnim,
   Curve? curveTranslateAnim,
-  bool safeAreaTopEnabled = true,
-  bool safeAreaBottomEnabled = true,
-  bool safeAreaLeftEnabled = true,
-  bool safeAreaRightEnabled = true,
 }) {
   OverlayEntry? overlay;
   overlay = OverlayEntry(
     builder: (context) {
-      return Align(
-        alignment: alertBannerLocation == AlertBannerLocation.top
-            ? Alignment.topCenter
-            : Alignment.bottomCenter,
-        child: SafeArea(
-          top: safeAreaTopEnabled,
-          bottom: safeAreaBottomEnabled,
-          left: safeAreaLeftEnabled,
-          right: safeAreaRightEnabled,
-          child: _OverlayItem(
-            onTap: onTap,
-            curveScaleDownAnim: curveScaleDownAnim ?? Curves.decelerate,
-            curveScaleUpAnim: curveScaleUpAnim ?? Curves.easeOutBack,
-            curveTranslateAnim: curveTranslateAnim ?? Curves.ease,
-            durationOfScalingUp:
-                durationOfScalingUp ?? const Duration(milliseconds: 400),
-            durationOfScalingDown:
-                durationOfScalingDown ?? const Duration(milliseconds: 250),
-            durationOfLeavingScreenBySwipe: durationOfLeavingScreenBySwipe ??
-                const Duration(milliseconds: 1500),
-            alertBannerLocation: alertBannerLocation,
-            maxWidth: maxLength,
-            overlay: overlay,
-            duration:
-                durationOfStayingOnScreen ?? const Duration(milliseconds: 3500),
-            child: child,
-          ),
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: _OverlayItem(
+          onTap: onTap,
+          curveScaleDownAnim: curveScaleDownAnim ?? Curves.decelerate,
+          curveScaleUpAnim: curveScaleUpAnim ?? Curves.easeOutBack,
+          curveTranslateAnim: curveTranslateAnim ?? Curves.ease,
+          durationOfScalingUp:
+              durationOfScalingUp ?? const Duration(milliseconds: 400),
+          durationOfScalingDown:
+              durationOfScalingDown ?? const Duration(milliseconds: 250),
+          durationOfLeavingScreenBySwipe: durationOfLeavingScreenBySwipe ??
+              const Duration(milliseconds: 1500),
+          // alertBannerLocation: alertBannerLocation,
+          maxWidth: maxLength,
+          overlay: overlay,
+          duration:
+              durationOfStayingOnScreen ?? const Duration(milliseconds: 3500),
+          child: child,
         ),
       );
     },
   );
-  Overlay.of(context)?.insert(overlay);
+  Overlay.of(context).insert(overlay);
 }
 
 class _OverlayItem extends StatefulWidget {
@@ -66,7 +53,7 @@ class _OverlayItem extends StatefulWidget {
     required this.durationOfLeavingScreenBySwipe,
     required this.durationOfScalingDown,
     required this.durationOfScalingUp,
-    required this.alertBannerLocation,
+    // required this.alertBannerLocation,
     required this.curveScaleDownAnim,
     required this.curveScaleUpAnim,
     required this.curveTranslateAnim,
@@ -77,7 +64,7 @@ class _OverlayItem extends StatefulWidget {
   final VoidCallback onTap;
 
   /// Where the alert_banner is displayed (top or bottom of screen).
-  final AlertBannerLocation alertBannerLocation;
+  // final AlertBannerLocation alertBannerLocation;
 
   /// Child widget of alert_banner.
   final Widget child;
@@ -186,32 +173,43 @@ class __OverlayItemState extends State<_OverlayItem>
     return Transform.translate(
       offset: Offset(
           0,
-          widget.alertBannerLocation == AlertBannerLocation.top
-              ? (translateAnim.value * -MediaQuery.of(context).size.height +
-                  (_swipeDy <= 0 ? _swipeDy : 0))
-              : (translateAnim.value * MediaQuery.of(context).size.height +
-                  (_swipeDy >= 0 ? _swipeDy : 0))),
+          // widget.alertBannerLocation == AlertBannerLocation.top
+          //     ?
+          (translateAnim.value * -MediaQuery.of(context).size.height +
+              (_swipeDy <= 0 ? _swipeDy : 0))
+          // : (translateAnim.value * MediaQuery.of(context).size.height +
+          //     (_swipeDy >= 0 ? _swipeDy : 0))
+          ),
       // Triggers for controlling the animations are handled via a GestureDetector.
       child: GestureDetector(
         onVerticalDragEnd: (details) {
-          if (widget.alertBannerLocation == AlertBannerLocation.top
-              ? _swipeDy < 0
-              : _swipeDy > 0) {
+          if (
+              // widget.alertBannerLocation == AlertBannerLocation.top
+              //   ?
+              _swipeDy < 0
+              // : _swipeDy > 0
+              ) {
             reverseAnimEarly();
           }
         },
         onVerticalDragCancel: () {
-          if (widget.alertBannerLocation == AlertBannerLocation.top
-              ? _swipeDy <= 0
-              : _swipeDy >= 0) {
+          if (
+              // widget.alertBannerLocation == AlertBannerLocation.top
+              // ?
+              _swipeDy <= 0
+              // : _swipeDy >= 0
+              ) {
             reverseAnimEarly();
           }
         },
         onVerticalDragUpdate: (details) {
           if (translateAnim.value != 0) return;
-          if (widget.alertBannerLocation == AlertBannerLocation.top
-              ? (details.delta.dy <= 0 || _swipeDy < 0)
-              : (details.delta.dy >= 0 || _swipeDy > 0)) {
+          if (
+              // widget.alertBannerLocation == AlertBannerLocation.top
+              // ?
+              (details.delta.dy <= 0 || _swipeDy < 0)
+              // : (details.delta.dy >= 0 || _swipeDy > 0)
+              ) {
             setState(() {
               _swipeDy += details.delta.dy;
             });

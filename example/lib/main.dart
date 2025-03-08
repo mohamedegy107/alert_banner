@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                   context,
                   () => print("TAPPED"),
                   const ExampleAlertBannerChild(),
-                  alertBannerLocation: AlertBannerLocation.top,
+                  // alertBannerLocation: AlertBannerLocation.top,
                   // .. EDIT MORE FIELDS HERE ...
                 ),
                 child: const Text("Show top alert"),
@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                   context,
                   () => print("TAPPED"),
                   const ExampleAlertBannerChild(),
-                  alertBannerLocation: AlertBannerLocation.bottom,
+                  // alertBannerLocation: AlertBannerLocation.bottom,
                 ),
                 child: const Text("Show bottom alert"),
                 // .. EDIT MORE FIELDS HERE ...
@@ -79,7 +79,8 @@ class ExampleAlertBannerChild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
+      constraints:
+          BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.8),
       decoration: const BoxDecoration(
         color: Colors.redAccent,
         borderRadius: BorderRadius.all(
