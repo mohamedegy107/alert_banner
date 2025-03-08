@@ -1,0 +1,2 @@
+H:/F/Flutter Projects/my flutter plugines/alert_banner/alert_banner/example/android/app/.cxx/Debug/4u43b5j3/x86/CMakeFiles/edit_cache.dir
+H:/F/Flutter Projects/my flutter plugines/alert_banner/alert_banner/example/android/app/.cxx/Debug/4u43b5j3/x86/CMakeFiles/rebuild_cache.dir

@@ -39,12 +39,28 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () => showAlertBanner(
                   context,
                   () => print("TAPPED"),
-                  const ExampleAlertBannerChild(),
+
+                  // const ExampleAlertBannerChild(),
+
+                  const AnimatedBanner(
+                    imageHeight: 30,
+                    imageWidth: 50,
+                    imageUrl:
+                        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
+                  ),
+
+                  maxWidth: 50,
+                  durationOfStayingOnScreen: const Duration(seconds: 7),
+                  durationOfScalingUp: const Duration(seconds: 0),
+                  durationOfScalingDown: const Duration(seconds: 0),
+                  durationOfLeavingScreenBySwipe: const Duration(seconds: 0),
                   // alertBannerLocation: AlertBannerLocation.top,
                   // .. EDIT MORE FIELDS HERE ...
                 ),
                 child: const Text("Show top alert"),
               ),
+
+              ////
               const Padding(
                 padding: EdgeInsets.all(15),
                 child: Text(
@@ -56,12 +72,13 @@ class HomeScreen extends StatelessWidget {
               // EXAMPLE #2 of showAlertBanner()
               // You can alter its MANY fields, too
               TextButton(
-                onPressed: () => showAlertBanner(
-                  context,
-                  () => print("TAPPED"),
-                  const ExampleAlertBannerChild(),
-                  // alertBannerLocation: AlertBannerLocation.bottom,
-                ),
+                onPressed: () => print("TAPPED OUT OF ALERT"),
+                // showAlertBanner(
+                //   context,
+                //   () => print("TAPPED"),
+                //   const ExampleAlertBannerChild(),
+                //   alertBannerLocation: AlertBannerLocation.bottom,
+                // ),
                 child: const Text("Show bottom alert"),
                 // .. EDIT MORE FIELDS HERE ...
               ),
@@ -97,6 +114,77 @@ class ExampleAlertBannerChild extends StatelessWidget {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class AnimatedBanner extends StatefulWidget {
+  final double imageWidth;
+  final double imageHeight;
+  final String imageUrl;
+  final Duration duration;
+
+  const AnimatedBanner({
+    Key? key,
+    required this.imageWidth,
+    required this.imageHeight,
+    required this.imageUrl,
+    this.duration = const Duration(seconds: 7),
+  }) : super(key: key);
+
+  @override
+  State<AnimatedBanner> createState() => _MovingBannerState();
+}
+
+class _MovingBannerState extends State<AnimatedBanner>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    // ضبط مدة الحركة حسب الحاجة
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 7),
+    )..forward().whenComplete(() => print("Done"));
+
+    // من أجل بدء الودجت خارج الشاشة على اليمين ونهايته خارج الشاشة على اليسار
+    _slideAnimation = Tween<Offset>(
+      begin:
+          const Offset(1.0, 0.0), // خارج الشاشة من اليمين (1.0 يعني عرض الودجت)
+      end: const Offset(-1.0, 0.0), // خارج الشاشة من اليسار
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _slideAnimation,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 40),
+        child: SizedBox(
+          height: widget.imageHeight + 10,
+          width: widget.imageWidth + 10,
+          child: UnconstrainedBox(
+            child: Image.network(
+              widget.imageUrl,
+              width: widget.imageWidth,
+              height: widget.imageHeight,
+            ),
           ),
         ),
       ),

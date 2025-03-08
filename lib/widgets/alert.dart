@@ -6,7 +6,7 @@ dynamic showAlertBanner(
   VoidCallback onTap,
   Widget child, {
   AlertBannerLocation alertBannerLocation = AlertBannerLocation.top,
-  double? maxLength,
+  double? maxWidth,
   Duration? durationOfStayingOnScreen,
   Duration? durationOfScalingUp,
   Duration? durationOfScalingDown,
@@ -37,7 +37,7 @@ dynamic showAlertBanner(
             durationOfLeavingScreenBySwipe: durationOfLeavingScreenBySwipe ??
                 const Duration(milliseconds: 1500),
             alertBannerLocation: alertBannerLocation,
-            maxWidth: maxLength,
+            maxWidth: maxWidth,
             overlay: overlay,
             duration:
                 durationOfStayingOnScreen ?? const Duration(milliseconds: 3500),
@@ -214,18 +214,12 @@ class __OverlayItemState extends State<_OverlayItem>
         // Controlled child that is the actual alert_banner.
         child: Transform.scale(
           scale: scaleAnim.value,
-          child: Container(
-            width: double.infinity,
-            // margin: const EdgeInsets.only(top: 10),
-            constraints: BoxConstraints(
-                maxWidth:
-                    widget.maxWidth ?? MediaQuery.of(context).size.width * 0.8),
+          child: SizedBox(
+            width: MediaQuery.of(context).size.width,
             child: GestureDetector(
               onTap: () => widget.onTap(),
-              child: Material(
-                color: Colors.transparent,
-                child: widget.child,
-              ),
+              // behavior: HitTestBehavior.opaque,
+              child: widget.child,
             ),
           ),
         ),
