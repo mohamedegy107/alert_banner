@@ -221,7 +221,7 @@ class __OverlayItemState extends State<_OverlayItem>
           scale: scaleAnim.value,
           child: Container(
             width: double.infinity,
-            margin: const EdgeInsets.only(top: 10),
+            // margin: const EdgeInsets.only(top: 10),
             constraints: BoxConstraints(
                 maxWidth:
                     widget.maxWidth ?? MediaQuery.of(context).size.width * 0.8),
