@@ -172,8 +172,8 @@ class _MovingBannerState extends State<AnimatedBanner>
     return SlideTransition(
       position: _slideAnimation,
       child: SizedBox(
-        height: widget.imageHeight + 10,
-        width: widget.imageWidth + 10,
+        height: widget.imageHeight,
+        width: widget.imageWidth,
         child: UnconstrainedBox(
           child: Image.network(
             widget.imageUrl,
