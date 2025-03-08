@@ -43,13 +43,14 @@ class HomeScreen extends StatelessWidget {
                   durationOfScalingDown: const Duration(seconds: 0),
                   durationOfLeavingScreenBySwipe: const Duration(seconds: 0),
                   alertBannerLocation: AlertBannerLocation.center,
-                  // const ExampleAlertBannerChild(),
-                  child: const AnimatedBanner(
-                    imageHeight: 30,
-                    imageWidth: 50,
-                    imageUrl:
-                        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
-                  ),
+                  child: const ExampleAlertBannerChild(),
+                  maxWidth: 300,
+                  // child: const AnimatedBanner(
+                  //   imageHeight: 30,
+                  //   imageWidth: 50,
+                  //   imageUrl:
+                  //       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Flag_of_Palestine.svg/640px-Flag_of_Palestine.svg.png",
+                  // ),
                   onTap: () => print("TAPPED"),
                   // .. EDIT MORE FIELDS HERE ...
                 ),
