@@ -163,13 +163,9 @@ class __OverlayItemState extends State<_OverlayItem>
   /// AKA: Hides the alert_banner via animation.
   void reverseAnimEarly() {
     if (!mounted || widget.overlay == null) return;
-    translateAnimController.forward().then((value) {
-      ////
-      widget.onCompleted?.call();
-
-      ////
-      widget.overlay!.remove();
-    });
+    translateAnimController.forward().then(
+          (value) => widget.overlay!.remove(),
+        );
     translateAnimController.addListener(() => setState(() {}));
   }
 
@@ -180,7 +176,12 @@ class __OverlayItemState extends State<_OverlayItem>
     if (!mounted || widget.overlay == null) return;
     scaleAnimController.forward().then((_) async {
       await Future.delayed(widget.duration);
+
+      ////
+      widget.onCompleted?.call();
+
       if (!mounted || widget.overlay == null) return;
+
       scaleAnimController.reverse().then((value) => widget.overlay!.remove());
     });
     scaleAnimController.addListener(() => setState(() {}));

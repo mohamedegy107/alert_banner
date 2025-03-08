@@ -45,6 +45,7 @@ class HomeScreen extends StatelessWidget {
                 alertBannerLocation: AlertBannerLocation.center,
                 // child: const ExampleAlertBannerChild(),
                 // maxWidth: 50,
+                onCompleted: () => print("COMPLETED"),
                 child: const AnimatedBanner(
                   imageHeight: 30,
                   imageWidth: 50,
