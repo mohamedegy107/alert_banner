@@ -50,11 +50,11 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   maxWidth: 50,
-                  durationOfStayingOnScreen: const Duration(seconds: 7),
+                  durationOfStayingOnScreen: const Duration(seconds: 6),
                   durationOfScalingUp: const Duration(seconds: 0),
                   durationOfScalingDown: const Duration(seconds: 0),
                   durationOfLeavingScreenBySwipe: const Duration(seconds: 0),
-                  // alertBannerLocation: AlertBannerLocation.top,
+                  alertBannerLocation: AlertBannerLocation.center,
                   // .. EDIT MORE FIELDS HERE ...
                 ),
                 child: const Text("Show top alert"),
@@ -132,7 +132,7 @@ class AnimatedBanner extends StatefulWidget {
     required this.imageWidth,
     required this.imageHeight,
     required this.imageUrl,
-    this.duration = const Duration(seconds: 7),
+    this.duration = const Duration(seconds: 6),
   }) : super(key: key);
 
   @override
@@ -150,14 +150,14 @@ class _MovingBannerState extends State<AnimatedBanner>
     // ضبط مدة الحركة حسب الحاجة
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 7),
+      duration: widget.duration,
     )..forward().whenComplete(() => print("Done"));
 
     // من أجل بدء الودجت خارج الشاشة على اليمين ونهايته خارج الشاشة على اليسار
     _slideAnimation = Tween<Offset>(
       begin:
-          const Offset(1.0, 0.0), // خارج الشاشة من اليمين (1.0 يعني عرض الودجت)
-      end: const Offset(-1.0, 0.0), // خارج الشاشة من اليسار
+          const Offset(0.6, 0.0), // خارج الشاشة من اليمين (1.0 يعني عرض الودجت)
+      end: const Offset(-0.6, 0.0), // خارج الشاشة من اليسار
     ).animate(CurvedAnimation(
       parent: _controller,
       curve: Curves.easeInOut,

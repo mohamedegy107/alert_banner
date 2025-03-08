@@ -24,7 +24,9 @@ dynamic showAlertBanner(
         child: Align(
           alignment: alertBannerLocation == AlertBannerLocation.top
               ? Alignment.topCenter
-              : Alignment.bottomCenter,
+              : alertBannerLocation == AlertBannerLocation.center
+                  ? Alignment.center
+                  : Alignment.bottomCenter,
           child: _OverlayItem(
             onTap: onTap,
             curveScaleDownAnim: curveScaleDownAnim ?? Curves.decelerate,
@@ -214,8 +216,12 @@ class __OverlayItemState extends State<_OverlayItem>
         // Controlled child that is the actual alert_banner.
         child: Transform.scale(
           scale: scaleAnim.value,
-          child: SizedBox(
+          child: Container(
             width: MediaQuery.of(context).size.width,
+            // margin: const EdgeInsets.only(top: 10),
+            // constraints: BoxConstraints(
+            //   maxWidth: MediaQuery.of(context).size.width * 0.63,
+            // ),
             child: GestureDetector(
               onTap: () => widget.onTap(),
               // behavior: HitTestBehavior.opaque,
